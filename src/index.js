@@ -67,17 +67,25 @@ function Header() {
 
 function Menu() {
   // const style = { color: "red", fontSize: "45px", textTransform: "uppercase" };
+  // const pizzas = pizzaData;
+  const pizzas = [];
+  const num_pizzas = pizzas.length;
   const style = {};
 
   return (
     <main className="menu">
       <h2 style={style}>Our Menu</h2>
 
-      <ul className="pizzas">
-        {pizzaData.map((pizza) => (
-          <Pizza pizzaObject={pizza} key={pizza.name} />
-        ))}
-      </ul>
+      {num_pizzas > 0 ? (
+        <ul className="pizzas">
+          {pizzas.map((pizza) => (
+            <Pizza pizzaObject={pizza} key={pizza.name} />
+          ))}
+        </ul>
+      ) : (
+        <p>We're still working on our menu. Kindly comeback later 😊</p>
+      )}
+
       {/* <Pizza
         name="Pizza Prosciutto"
         ingredients="Tomato, mozarella, ham, aragula, and burrata cheese"
@@ -110,18 +118,27 @@ function Pizza(props) {
 }
 
 function Footer() {
-  const hour = new Date().getHours;
+  const hour = new Date().getHours();
   const open_hour = 12;
   const close_hour = 22;
   const is_open = hour >= open_hour && hour <= close_hour;
   console.log(is_open);
+  console.log(hour);
 
   // if (hour >= open_hour && hour <= close_hour) alert("We're currently open!");
   // else alert("Sorry we're closed");
 
   return (
     <footer className="footer">
-      {new Date().toLocaleTimeString()} We're currently open!
+      {is_open && (
+        <div className="order">
+          <p>
+            We're open until {close_hour}:00. Come visit us or order online.
+          </p>
+          <button className="btn">Order Now</button>
+        </div>
+      )}
+      {/* {new Date().toLocaleTimeString()} We're currently open! */}
     </footer>
   );
   // return React.createElement("footer", null, "We're currently open!");
