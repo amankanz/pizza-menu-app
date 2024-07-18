@@ -66,9 +66,7 @@ function Header() {
 }
 
 function Menu() {
-  // const style = { color: "red", fontSize: "45px", textTransform: "uppercase" };
-  // const pizzas = pizzaData;
-  const pizzas = [];
+  const pizzas = pizzaData;
   const num_pizzas = pizzas.length;
   const style = {};
 
@@ -85,26 +83,15 @@ function Menu() {
       ) : (
         <p>We're still working on our menu. Kindly comeback later 😊</p>
       )}
-
-      {/* <Pizza
-        name="Pizza Prosciutto"
-        ingredients="Tomato, mozarella, ham, aragula, and burrata cheese"
-        photoName="pizzas/prosciutto.jpg"
-        price={10}
-      />
-
-      <Pizza
-        name="Pizza Funghi"
-        ingredients="Tomato, mozarella, mushrooms, and onion"
-        price={12}
-        photoName="pizzas/funghi.jpg"
-      /> */}
     </main>
   );
 }
 
 function Pizza(props) {
   console.log(props);
+
+  if (props.pizzaObject.soldOut) return null;
+
   return (
     <li className="pizza">
       <img src={props.pizzaObject.photoName} alt={props.pizzaObject.name} />
@@ -125,23 +112,28 @@ function Footer() {
   console.log(is_open);
   console.log(hour);
 
-  // if (hour >= open_hour && hour <= close_hour) alert("We're currently open!");
-  // else alert("Sorry we're closed");
-
   return (
     <footer className="footer">
-      {is_open && (
-        <div className="order">
-          <p>
-            We're open until {close_hour}:00. Come visit us or order online.
-          </p>
-          <button className="btn">Order Now</button>
-        </div>
+      {is_open ? (
+        <Order closeHour={close_hour} />
+      ) : (
+        <p>
+          We're happy to welcome you between {open_hour}:00 and {close_hour}:00.
+        </p>
       )}
-      {/* {new Date().toLocaleTimeString()} We're currently open! */}
     </footer>
   );
-  // return React.createElement("footer", null, "We're currently open!");
+}
+
+function Order(props) {
+  return (
+    <div className="order">
+      <p>
+        We're open until {props.closeHour}:00. Come visit us or order online.
+      </p>
+      <button className="btn">Order Now</button>
+    </div>
+  );
 }
 
 // Rendering in React v18
