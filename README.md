@@ -31,6 +31,6 @@ npm start
 
 Here are some screenshots of the app:
 
+```
 ![pizza-menu](https://github.com/user-attachments/assets/d7a811e9-89bc-4af8-99cb-9eb52f2e81a3)
 
-```
