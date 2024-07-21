@@ -31,5 +31,5 @@ npm start
 
 Here are some screenshots of the app:
 
-![Menu Page](public/pizza-menu.PNG)
+![Menu Page](./public/pizza-menu.PNG)
 ```
